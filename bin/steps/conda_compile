@@ -1,9 +1,8 @@
 echo "Aidhedge.org" 
 if [ ! -d /app/.heroku/miniconda ]; then
+    echo "installing Miniconda"
     puts-step "Preparing Python/Miniconda Environment"
-    curl -Os 
-    echo "Installing version 4.2.13"
-    https://repo.continuum.io/miniconda/Miniconda-4.2.13-Linux-x86_64.sh
+    curl -Os https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh
     bash Miniconda-latest-Linux-x86_64.sh  -p /app/.heroku/miniconda/ -b | indent
     rm -fr Miniconda-latest-Linux-x86_64.sh
 
