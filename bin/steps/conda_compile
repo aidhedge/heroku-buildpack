@@ -32,8 +32,6 @@ if [ -f requirements.txt ]; then
     pip install -r requirements.txt  --exists-action=w --allow-all-external | indent
 fi
 
-echo "Remove mkl"
-conda remove mkl mkl-service --yes
 
 # Clean up the installation environment .
 conda clean -pt --yes > /dev/null
