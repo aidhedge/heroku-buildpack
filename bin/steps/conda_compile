@@ -31,6 +31,6 @@ if [ -f requirements.txt ]; then
     puts-step "Installing dependencies using Pip"
     pip install -r requirements.txt  --exists-action=w --allow-all-external | indent
 fi
-
+conda remove mkl mkl-service --yes
 # Clean up the installation environment .
 conda clean -pt --yes > /dev/null
