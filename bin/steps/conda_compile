@@ -1,25 +1,21 @@
 echo "Aidhedge.org" 
 if [ ! -d /app/.heroku/miniconda ]; then
-    echo "installing Miniconda"
     puts-step "Preparing Python/Miniconda Environment"
-    curl -Os https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh
+    curl -Os http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh
     bash Miniconda-latest-Linux-x86_64.sh  -p /app/.heroku/miniconda/ -b | indent
     rm -fr Miniconda-latest-Linux-x86_64.sh
 
     conda install pip --yes | indent
 fi
 
-echo "nomkl" > $HOME/.heroku/miniconda/conda-meta/pinned
-echo "added pinned file in $HOME/.heroku/miniconda/conda-meta/pinned"
-echo "remove nomkl"
-conda install nomkl --yes
-
 if [ -f conda-channels.txt ]; then
     puts-step "Installing conda channels"
     cat conda-channels.txt | xargs -I {} conda config --add channels {}
 fi
 
-
+echo "nomkl" > $HOME/.heroku/miniconda/conda-meta/pinned
+echo "added pinned file in $HOME/.heroku/miniconda/conda-meta/pinned"
+conda install nomkl
 
 echo "Installing flask migrate"
 conda install --channel https://conda.anaconda.org/davidbgonzalez flask-migrate=1.4.0
@@ -33,7 +29,6 @@ if [ -f requirements.txt ]; then
     puts-step "Installing dependencies using Pip"
     pip install -r requirements.txt  --exists-action=w --allow-all-external | indent
 fi
-
 
 # Clean up the installation environment .
 conda clean -pt --yes > /dev/null
