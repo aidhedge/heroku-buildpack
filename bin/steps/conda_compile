@@ -15,7 +15,7 @@ fi
 
 echo "nomkl" > $HOME/.heroku/miniconda/conda-meta/pinned
 echo "added pinned file in $HOME/.heroku/miniconda/conda-meta/pinned"
-conda install nomkl
+conda install nomkl --yes
 
 echo "Installing flask migrate"
 conda install --channel https://conda.anaconda.org/davidbgonzalez flask-migrate=1.4.0
