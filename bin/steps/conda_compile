@@ -11,6 +11,7 @@ fi
 
 echo "nomkl" > $HOME/.heroku/miniconda/conda-meta/pinned
 echo "added pinned file in $HOME/.heroku/miniconda/conda-meta/pinned"
+echo "remove nomkl"
 conda install nomkl --yes
 
 if [ -f conda-channels.txt ]; then
