@@ -2,7 +2,7 @@ echo "Aidhedge.org"
 if [ ! -d /app/.heroku/miniconda ]; then
     puts-step "Preparing Python/Miniconda Environment"
     curl -Os https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh
-    bash Miniconda-latest-Linux-x86_64.sh  -p /app/.heroku/miniconda/ -b | indent
+    p  -p /app/.heroku/miniconda/ -b | indent
     rm -fr Miniconda-latest-Linux-x86_64.sh
 
     conda install pip --yes | indent
@@ -22,6 +22,7 @@ if [ -f requirements.txt ]; then
     puts-step "Installing dependencies using Pip"
     pip install -r requirements.txt  --exists-action=w --allow-all-external | indent
 fi
-
+echo "Installing Matplotlib"
+conda install --no-deps matplotlib
 # Clean up the installation environment .
 conda clean -pt --yes > /dev/null
