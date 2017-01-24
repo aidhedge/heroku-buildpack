@@ -23,7 +23,7 @@ if [ -f requirements.txt ]; then
     pip install -r requirements.txt  --exists-action=w --allow-all-external | indent
 fi
 echo "Installing Matplotlib"
-# conda install --no-deps matplotlib
-conda install matplotlib
+#conda install --no-deps matplotlib
+conda install matplotlib=1.5.3
 # Clean up the installation environment .
 conda clean -pt --yes > /dev/null
